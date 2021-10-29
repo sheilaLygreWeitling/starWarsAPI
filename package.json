@@ -1,0 +1,32 @@
+{
+  "name": "starwarsapi",
+  "version": "1.0.0",
+  "description": "",
+  "main": "gulpfile.js",
+  "dependencies": {
+    "axios": "^0.24.0",
+    "gulp": "^4.0.2",
+    "gulp-sass": "^5.0.0",
+    "node-sass": "^6.0.1",
+    "save-dev": "0.0.1-security"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.15.8",
+    "@babel/preset-env": "^7.15.8",
+    "gulp-babel": "^8.0.0",
+    "sass": "^1.43.4"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sheilaLygreWeitling/starWarsAPI.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sheilaLygreWeitling/starWarsAPI/issues"
+  },
+  "homepage": "https://github.com/sheilaLygreWeitling/starWarsAPI#readme"
+}
