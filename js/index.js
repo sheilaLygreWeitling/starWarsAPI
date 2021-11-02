@@ -1,6 +1,7 @@
 /* let list = document.querySelector(".Article__p")
 const jokes = []; */
-let jokeItem = document.querySelector('.animate__animated-jokeItem');
+
+let jokeItem = document.querySelector(".animate__animated-jokeItem");
 
 let touchCoordinateStart;
 let touchCoordinateMove;
@@ -8,13 +9,13 @@ let touchCoordinateEnd;
 
 let deleteButtonWidth = (window.screen.width * 40) / 100;
 
-document.querySelector('.animate__animated-deleteItem').addEventListener("click", () => {
-    document.querySelector("section").classList.add("animate__fadeOutLeft");//når den grønne boks er faded ud til venstre
+document.querySelector(".animate__animated-deleteItem").addEventListener("click", () => {
+    document.querySelector(".animate__animated").classList.add("animate__fadeOutLeft");//når den grønne boks er faded ud til venstre
     setTimeout(() => { //efter 800 milisekunder, skal "section" bruge class "collapsed"
-        document.querySelector("section").classList.add("collapsed"); //der er lavet en class i SCSS der hedder collapsed
+        document.querySelector(".animate__animated").classList.add("collapsed"); //der er lavet en class i SCSS der hedder collapsed
     }, 800);
     setTimeout(() => {
-        document.querySelector("section").remove();//efter 2200 milisekunder, så bruger vi querySelector til at fjerne section
+        document.querySelector(".animate__animated").remove();//efter 2200 milisekunder, så bruger vi querySelector til at fjerne section
     }, 2200);
 });
 

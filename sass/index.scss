@@ -23,6 +23,7 @@ section > * {
 	background-color: darkseagreen;
 	grid-area: 1/1/2/3; /* rs / cs / re / ce */
 	transition: transform 0.15s ease;
+	border-bottom: solid 2px rgb(66, 96, 66);
 }
 
 .animate__animated-deleteItem {
@@ -30,6 +31,11 @@ section > * {
 	grid-area: 1/2/2/3;
 	justify-content: center;
 	color: white;
+}
+
+.animate__animated-deleteItem::before {
+	font-family: "Font Awesome 5 Free";
+	content: "\f2ed";
 }
 
 .animate__animated-moveUpDeleteItem {

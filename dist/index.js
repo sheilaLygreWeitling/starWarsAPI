@@ -2,20 +2,20 @@
 
 /* let list = document.querySelector(".Article__p")
 const jokes = []; */
-var jokeItem = document.querySelector('.animate__animated-jokeItem');
+var jokeItem = document.querySelector(".animate__animated-jokeItem");
 var touchCoordinateStart;
 var touchCoordinateMove;
 var touchCoordinateEnd;
 var deleteButtonWidth = window.screen.width * 40 / 100;
-document.querySelector('.animate__animated-deleteItem').addEventListener("click", function () {
-  document.querySelector("section").classList.add("animate__fadeOutLeft"); //når den grønne boks er faded ud til venstre
+document.querySelector(".animate__animated-deleteItem").addEventListener("click", function () {
+  document.querySelector(".animate__animated").classList.add("animate__fadeOutLeft"); //når den grønne boks er faded ud til venstre
 
   setTimeout(function () {
     //efter 800 milisekunder, skal "section" bruge class "collapsed"
-    document.querySelector("section").classList.add("collapsed"); //der er lavet en class i SCSS der hedder collapsed
+    document.querySelector(".animate__animated").classList.add("collapsed"); //der er lavet en class i SCSS der hedder collapsed
   }, 800);
   setTimeout(function () {
-    document.querySelector("section").remove(); //efter 2200 milisekunder, så bruger vi querySelector til at fjerne section
+    document.querySelector(".animate__animated").remove(); //efter 2200 milisekunder, så bruger vi querySelector til at fjerne section
   }, 2200);
 });
 jokeItem.addEventListener('touchstart', function (e) {
