@@ -1,7 +1,53 @@
-let list = document.querySelector(".Article__p")
-const jokes = [];
+/* let list = document.querySelector(".Article__p")
+const jokes = []; */
+let jokeItem = document.querySelector('.animate__animated-jokeItem');
 
-for (let index = 0; index < 10; index++) {
+let touchCoordinateStart;
+let touchCoordinateMove;
+let touchCoordinateEnd;
+
+let deleteButtonWidth = (window.screen.width * 40) / 100;
+
+document.querySelector('.animate__animated-deleteItem').addEventListener("click", () => {
+    document.querySelector("section").classList.add("animate__fadeOutLeft");//når den grønne boks er faded ud til venstre
+    setTimeout(() => { //efter 800 milisekunder, skal "section" bruge class "collapsed"
+        document.querySelector("section").classList.add("collapsed"); //der er lavet en class i SCSS der hedder collapsed
+    }, 800);
+    setTimeout(() => {
+        document.querySelector("section").remove();//efter 2200 milisekunder, så bruger vi querySelector til at fjerne section
+    }, 2200);
+});
+
+jokeItem.addEventListener('touchstart', (e) => {
+    touchCoordinateStart = e.touches[0].clientX;
+});
+
+jokeItem.addEventListener('touchmove', (e) => {
+    touchCoordinateMove = Math.floor(e.touches[0].clientX);
+    //console.log(`${touchCordinateMove - touchCordinateStart}`)
+
+    if (touchCoordinateMove < touchCoordinateStart &&
+        touchCoordinateMove > touchCoordinateStart - deleteButtonWidth) {
+        jokeItem.style.transform = `translateX(${touchCoordinateMove - touchCoordinateStart}px)`;
+    }
+});
+
+jokeItem.addEventListener('touchend', (e) => {
+    touchCoordinateEnd = Math.floor(e.changedTouches[0].clientX);
+
+    if (touchCoordinateEnd < touchCoordinateStart - deleteButtonWidth / 2) {
+        jokeItem.style.transform = `translateX(-${deleteButtonWidth}px)`;
+    } else {
+        jokeItem.style.transform = `translateX(${e.target.offsetLeft})`;
+    }
+});
+
+
+
+
+
+
+/* for (let index = 0; index < 10; index++) {
     axios.get("https://icanhazdadjoke.com/", {
         headers: {
             accept: 'application/json'
@@ -14,7 +60,7 @@ for (let index = 0; index < 10; index++) {
         })
 
 }
-console.log(jokes);
+console.log(jokes); */
 
 /* jokes.forEach(element => {
     console.log(element);

@@ -1,0 +1,54 @@
+@charset "UTF-8";
+body {
+  margin: 0 auto;
+}
+
+section {
+  height: 75px;
+  display: grid;
+  grid-template: 75px/1fr 40%;
+  /* row / column */
+  transition: height 0.45s ease;
+  /*Height manipulerer med alt der har med height at gøre. Det er en dårlig ide at lave transition på "height", men kan bruge scaleY, men det er besværligt i et grid*/
+}
+
+.collapsed {
+  height: 0;
+}
+
+section > * {
+  display: flex;
+  align-items: center;
+}
+
+.animate__animated-jokeItem {
+  padding: 10px;
+  background-color: darkseagreen;
+  grid-area: 1/1/2/3;
+  /* rs / cs / re / ce */
+  transition: transform 0.15s ease;
+}
+
+.animate__animated-deleteItem {
+  background-color: rosybrown;
+  grid-area: 1/2/2/3;
+  justify-content: center;
+  color: white;
+}
+
+.animate__animated-moveUpDeleteItem {
+  padding: 30px;
+  background-color: rosybrown;
+  grid-area: 1/2/3/4;
+  /* rs / cs / re / ce */
+  justify-content: center;
+  color: white;
+}
+
+.animate__animated-jokeItemMoveUp {
+  padding: 10px;
+  background-color: #4e9ac2;
+  grid-area: 1/1/3/3;
+  /* rs / cs / re / ce */
+  transition: transform 0.15s ease;
+}
