@@ -1,15 +1,15 @@
 "use strict";
 
-/*Lige nu generer vi HTML via .innerHTML, 
-men når vi laver projekter i praktik, 
-så skal vi lave createElement og appendChild*/
 axios.get("https://jsonplaceholder.typicode.com/users/").then(function (response) {
   var users = response.data;
   users.forEach(function (user) {
     var mainJoke = document.querySelector(".Main");
     var joke = document.createTextNode(user.name);
     var jokeSectionAnimate__animated = document.createElement("section");
-    jokeSectionAnimate__animated.classList.add("animate__animated");
+    jokeSectionAnimate__animated.classList.add("animate__animated"); //class på "jokeSectionAnimate__animated", som er "section"
+
+    jokeSectionAnimate__animated.setAttribute("id", user.id); //Her sætter vi en identifier(id), på "section"
+
     var jokeAnimate__animatedDeleteItem = document.createElement("div");
     jokeAnimate__animatedDeleteItem.classList.add("animate__animated-deleteItem");
     var jokeAnimate__animatedJokeItem = document.createElement("article");
@@ -19,39 +19,25 @@ axios.get("https://jsonplaceholder.typicode.com/users/").then(function (response
     mainJoke.appendChild(jokeSectionAnimate__animated);
     jokeAnimate__animatedJokeItem.appendChild(joke);
   });
-  var jokeItem = document.querySelector(".animate__animated-jokeItem");
-  var touchCoordinateStart;
-  var touchCoordinateMove;
-  var touchCoordinateEnd;
-  var deleteButtonWidth = window.screen.width * 40 / 100;
-  document.querySelector(".animate__animated-deleteItem").addEventListener("click", function () {
-    document.querySelector(".animate__animated").classList.add("animate__fadeOutLeft"); //når den grønne boks er faded ud til venstre
+});
+var touchCoordinateStart;
+var touchCoordinateMove;
+var touchCoordinateEnd;
+var deleteButtonWidth = window.screen.width * 40 / 100;
+document.querySelector("main").addEventListener("touchstart", function (e) {
+  var section = document.querySelector(".animate__animated");
+  /* let jokeItem = document.querySelector(".animate__animated-jokeItem") */
 
-    setTimeout(function () {
-      //efter 800 milisekunder, skal "section" bruge class "collapsed"
-      document.querySelector(".animate__animated").classList.add("collapsed"); //der er lavet en class i SCSS der hedder collapsed
-    }, 800);
-    setTimeout(function () {
-      document.querySelector(".animate__animated").remove(); //efter 2200 milisekunder, så bruger vi querySelector til at fjerne section
-    }, 2200);
-  });
-  jokeItem.addEventListener('touchstart', function (e) {
-    touchCoordinateStart = e.touches[0].clientX;
-  });
-  jokeItem.addEventListener('touchmove', function (e) {
-    touchCoordinateMove = Math.floor(e.touches[0].clientX); //console.log(`${touchCordinateMove - touchCordinateStart}`)
+  touchElement = e.target;
+  touchCoordinateStart = e.touches[0].clientX;
+  touchElement.addEventListener("touchmove", function (e) {
+    touchCoordinateMove = Math.floor(e.touches[0].clientX);
 
     if (touchCoordinateMove < touchCoordinateStart && touchCoordinateMove > touchCoordinateStart - deleteButtonWidth) {
-      jokeItem.style.transform = "translateX(".concat(touchCoordinateMove - touchCoordinateStart, "px)");
+      touchElement.style.transform = "translateX(".concat(touchCoordinateMove - touchCoordinateStart, "px)");
     }
   });
-  jokeItem.addEventListener('touchend', function (e) {
-    touchCoordinateEnd = Math.floor(e.changedTouches[0].clientX);
-
-    if (touchCoordinateEnd < touchCoordinateStart - deleteButtonWidth / 2) {
-      jokeItem.style.transform = "translateX(-".concat(deleteButtonWidth, "px)");
-    } else {
-      jokeItem.style.transform = "translateX(".concat(e.target.offsetLeft, ")");
-    }
-  });
+  touchElement.addEventListener("click", function () {
+    section.style.display = "none"; //fungerer på første element, både inden og udenfor axios
+  }); //jeg tænker jeg skal lave et loop... MEN HVIKLETTTTTTT
 });
