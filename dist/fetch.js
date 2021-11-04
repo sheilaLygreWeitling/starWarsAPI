@@ -19,44 +19,44 @@ axios.get("https://jsonplaceholder.typicode.com/users/").then(function (response
     mainJoke.appendChild(jokeSectionAnimate__animated);
     jokeAnimate__animatedJokeItem.appendChild(joke);
   });
-  var touchCoordinateStart;
-  var touchCoordinateMove;
-  var touchCoordinateEnd;
-  var deleteButtonWidth = window.screen.width * 40 / 100;
-  document.querySelector("main").addEventListener("touchstart", function (e) {
-    /* let section = document.querySelector(".animate__animated") */
+});
+var touchCoordinateStart;
+var touchCoordinateMove;
+var touchCoordinateEnd;
+var deleteButtonWidth = window.screen.width * 40 / 100;
+document.querySelector("main").addEventListener("touchstart", function (e) {
+  /* let section = document.querySelector(".animate__animated") */
 
-    /* let jokeItem = document.querySelector(".animate__animated-jokeItem") */
-    touchElement = e.target;
-    parentElement = e.target.parentElement;
-    touchCoordinateStart = e.touches[0].clientX;
-    document.querySelector("main").addEventListener("touchmove", function (e) {
-      touchCoordinateMove = Math.floor(e.touches[0].clientX);
+  /* let jokeItem = document.querySelector(".animate__animated-jokeItem") */
+  touchElement = e.target;
+  parentElement = e.target.parentElement;
+  touchCoordinateStart = e.touches[0].clientX;
+  document.querySelector("main").addEventListener("touchmove", function (e) {
+    touchCoordinateMove = Math.floor(e.touches[0].clientX);
 
-      if (touchCoordinateMove < touchCoordinateStart && touchCoordinateMove > touchCoordinateStart - deleteButtonWidth) {
-        touchElement.style.transform = "translateX(".concat(touchCoordinateMove - touchCoordinateStart, "px)");
-      }
-    });
-    document.querySelector("main").addEventListener("touchend", function (e) {
-      touchCoordinateEnd = Math.floor(e.changedTouches[0].clientX);
+    if (touchCoordinateMove < touchCoordinateStart && touchCoordinateMove > touchCoordinateStart - deleteButtonWidth) {
+      touchElement.style.transform = "translateX(".concat(touchCoordinateMove - touchCoordinateStart, "px)");
+    }
+  });
+  document.querySelector("main").addEventListener("touchend", function (e) {
+    touchCoordinateEnd = Math.floor(e.changedTouches[0].clientX);
 
-      if (touchCoordinateEnd < touchCoordinateStart - deleteButtonWidth / 2) {
-        touchElement.style.transform = "translateX(-".concat(deleteButtonWidth, "px)");
-      } else {
-        touchElement.style.transform = "translateX(".concat(e.target.offsetLeft, ")");
-      }
-    });
-    document.querySelector("section").addEventListener("click", function (e) {
-      if (e.target != deleteButtonWidth) {
-        document.querySelector("section").classList.add("animate__fadeOutLeft");
-        setTimeout(function () {
-          document.querySelector("section").classList.add("collapsed");
-        }, 800);
-        setTimeout(function () {
-          document.querySelector("section").remove();
-        }, 1200);
-      }
-    });
+    if (touchCoordinateEnd < touchCoordinateStart - deleteButtonWidth / 2) {
+      touchElement.style.transform = "translateX(-".concat(deleteButtonWidth, "px)");
+    } else {
+      touchElement.style.transform = "translateX(".concat(e.target.offsetLeft, ")");
+    }
+  });
+  document.querySelector(".animate__animated-deleteItem").addEventListener("click", function (e) {
+    if (touchElement != deleteButtonWidth) {
+      document.querySelector("section").classList.add("animate__fadeOutLeft");
+      setTimeout(function () {
+        document.querySelector("section").classList.add("collapsed");
+      }, 800);
+      setTimeout(function () {
+        document.querySelector("section").remove();
+      }, 1200);
+    }
   });
 });
 /* touchElement.addEventListener("touchmove", (e) => {

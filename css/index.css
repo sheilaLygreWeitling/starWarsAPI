@@ -35,10 +35,10 @@ section > * {
   margin: 1px;
 }
 
+/* 
 section:nth-child(even) .animate__animated-jokeItem {
-  background-color: #5c7d5c;
-}
-
+	background-color: rgb(92, 125, 92);
+} */
 .animate__animated-deleteItem {
   background-color: rosybrown;
   grid-area: 1/2/2/3;
