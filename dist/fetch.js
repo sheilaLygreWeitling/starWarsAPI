@@ -31,34 +31,49 @@ document.querySelector("main").addEventListener("touchstart", function (e) {
   touchElement = e.target;
   parentElement = e.target.parentElement;
   touchCoordinateStart = e.touches[0].clientX;
-  document.querySelector("main").addEventListener("touchmove", function (e) {
+  touchElement.addEventListener("touchmove", function (e) {
     touchCoordinateMove = Math.floor(e.touches[0].clientX);
 
     if (touchCoordinateMove < touchCoordinateStart && touchCoordinateMove > touchCoordinateStart - deleteButtonWidth) {
       touchElement.style.transform = "translateX(".concat(touchCoordinateMove - touchCoordinateStart, "px)");
     }
   });
-  document.querySelector("main").addEventListener("touchend", function (e) {
+  touchElement.addEventListener("touchend", function (e) {
     touchCoordinateEnd = Math.floor(e.changedTouches[0].clientX);
 
     if (touchCoordinateEnd < touchCoordinateStart - deleteButtonWidth / 2) {
       touchElement.style.transform = "translateX(-".concat(deleteButtonWidth, "px)");
     } else {
-      touchElement.style.transform = "translateX(".concat(e.target.offsetLeft, ")");
+      touchElement.style.transform = "translateX(0)";
     }
   });
-  document.querySelector(".animate__animated-deleteItem").addEventListener("click", function (e) {
-    if (touchElement != deleteButtonWidth) {
-      document.querySelector("section").classList.add("animate__fadeOutLeft");
-      setTimeout(function () {
-        document.querySelector("section").classList.add("collapsed");
-      }, 800);
-      setTimeout(function () {
-        document.querySelector("section").remove();
-      }, 1200);
-    }
+  parentElement.querySelector(".animate__animated-deleteItem").addEventListener("click", function (e) {
+    var userid = parentElement.id;
+    /*   let retrieveObject = localStorage.getItem(`${userid}`);
+    localStorage.setItem(
+        `${userid}`,
+        `${parentElement.document.querySelector(".animate__animated-jokeItem")}`
+      ) */
+
+    parentElement.classList.add("animate__fadeOutLeft");
+    setTimeout(function () {
+      parentElement.classList.add("collapsed");
+    }, 800);
+    setTimeout(function () {
+      parentElement.remove();
+    }, 900);
   });
 });
+/* if (e.target != deleteButtonWidth) {
+    document.querySelector("section").classList.add("animate__fadeOutLeft");
+    setTimeout(() => {
+        document.querySelector("section").classList.add("collapsed");
+    }, 800);
+    setTimeout(() => {
+        document.querySelector("section").remove();
+    }, 1200);
+} */
+
 /* touchElement.addEventListener("touchmove", (e) => {
     touchCoordinateMove = Math.floor(e.touches[0].clientX);
     if (
