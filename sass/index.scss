@@ -1,5 +1,9 @@
 body {
 	margin: 0 auto;
+	background-color: rgb(95, 150, 121);
+	h1 {
+		padding: 0.5em;
+	}
 }
 
 section {
@@ -23,7 +27,12 @@ section > * {
 	background-color: darkseagreen;
 	grid-area: 1/1/2/3; /* rs / cs / re / ce */
 	transition: transform 0.15s ease;
-	border-bottom: solid 2px rgb(66, 96, 66);
+	border: solid 2px rgb(66, 96, 66);
+	margin: 1px;
+}
+
+section:nth-child(even) .animate__animated-jokeItem {
+	background-color: rgb(92, 125, 92);
 }
 
 .animate__animated-deleteItem {
@@ -31,6 +40,7 @@ section > * {
 	grid-area: 1/2/2/3;
 	justify-content: center;
 	color: white;
+	margin: 1px;
 }
 
 .animate__animated-deleteItem::before {

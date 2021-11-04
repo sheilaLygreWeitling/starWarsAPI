@@ -21,32 +21,66 @@ axios.get("https://jsonplaceholder.typicode.com/users/").then((response) => {
         mainJoke.appendChild(jokeSectionAnimate__animated)
         jokeAnimate__animatedJokeItem.appendChild(joke)
     });
-});
 
-let touchCoordinateStart;
-let touchCoordinateMove;
-let touchCoordinateEnd;
+    let touchCoordinateStart;
+    let touchCoordinateMove;
+    let touchCoordinateEnd;
 
-let deleteButtonWidth = (window.screen.width * 40) / 100;
+    let deleteButtonWidth = (window.screen.width * 40) / 100;
 
-document.querySelector("main").addEventListener("touchstart", (e) => {
-    let section = document.querySelector(".animate__animated")
-    /* let jokeItem = document.querySelector(".animate__animated-jokeItem") */
-    touchElement = e.target;
-    touchCoordinateStart = e.touches[0].clientX;
+    document.querySelector("main").addEventListener("touchstart", (e) => {
+        /* let section = document.querySelector(".animate__animated") */
+        /* let jokeItem = document.querySelector(".animate__animated-jokeItem") */
+        touchElement = e.target;
+        parentElement = e.target.parentElement;
+        touchCoordinateStart = e.touches[0].clientX;
 
-    touchElement.addEventListener("touchmove", (e) => {
-        touchCoordinateMove = Math.floor(e.touches[0].clientX);
-        if (
-            touchCoordinateMove < touchCoordinateStart &&
-            touchCoordinateMove > touchCoordinateStart - deleteButtonWidth
-        ) {
-            touchElement.style.transform = `translateX(${touchCoordinateMove - touchCoordinateStart}px)`
-        }
+        document.querySelector("main").addEventListener("touchmove", (e) => {
+            touchCoordinateMove = Math.floor(e.touches[0].clientX);
+            if (touchCoordinateMove < touchCoordinateStart && touchCoordinateMove > touchCoordinateStart - deleteButtonWidth) {
+                touchElement.style.transform = `translateX(${touchCoordinateMove - touchCoordinateStart}px)`
+            }
+        });
+
+        document.querySelector("main").addEventListener("touchend", (e) => {
+            touchCoordinateEnd = Math.floor(e.changedTouches[0].clientX);
+            if (touchCoordinateEnd < touchCoordinateStart - deleteButtonWidth / 2) {
+                touchElement.style.transform = `translateX(-${deleteButtonWidth}px)`;
+            } else {
+                touchElement.style.transform = `translateX(${e.target.offsetLeft})`;
+            }
+        });
+
+        document.querySelector("section").addEventListener("click", (e) => {
+            if (e.target != deleteButtonWidth) {
+                document.querySelector("section").classList.add("animate__fadeOutLeft");
+
+                setTimeout(() => {
+                    document.querySelector("section").classList.add("collapsed");
+                }, 800);
+
+                setTimeout(() => {
+                    document.querySelector("section").remove();
+                }, 1200);
+            }
+        });
     });
-
-    touchElement.addEventListener("click", () => {
-        section.style.display = "none" //fungerer på første element, både inden og udenfor axios
-    }); //jeg tænker jeg skal lave et loop... MEN HVIKLETTTTTTT
 });
+
+
+
+/* touchElement.addEventListener("touchmove", (e) => {
+    touchCoordinateMove = Math.floor(e.touches[0].clientX);
+    if (
+        touchCoordinateMove < touchCoordinateStart &&
+        touchCoordinateMove > touchCoordinateStart - deleteButtonWidth
+    ) {
+        touchElement.style.transform = `translateX(${touchCoordinateMove - touchCoordinateStart}px)`
+    }
+});
+
+touchElement.addEventListener("click", () => {
+    section.style.display = "none"  *///fungerer på første element, både inden og udenfor axios
+/* }); */
+//jeg tænker jeg skal lave et loop... MEN HVIKLETTTTTTT
 
