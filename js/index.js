@@ -28,7 +28,7 @@ document.querySelector("main").addEventListener("touchstart", (e) => {
         }
     });
 
-    parentElement.querySelector(".animate__animated-deleteItem").addEventListener("click", (e) => {
+    parentElement.querySelector(".animate__animated-recycledItem").addEventListener("click", (e) => {
         let userObject = {
             id: parentElement.id,
             name: parentElement.querySelector(".animate__animated-jokeItem").textContent,
@@ -36,7 +36,7 @@ document.querySelector("main").addEventListener("touchstart", (e) => {
         if (!trash.includes(JSON.stringify(userObject))) {
             trash.push(JSON.stringify(userObject));
         };
-        localStorage.setItem("animate__animated-deleteItem", JSON.stringify(trash));
+        localStorage.setItem(".animate__animated-recycledItem", JSON.stringify(trash));
         parentElement.classList.add("animate__fadeOutLeft")
         /*         console.log(localStorage); */
         setTimeout(() => {

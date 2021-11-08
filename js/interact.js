@@ -27,19 +27,21 @@ document.querySelector("main").addEventListener("touchstart", (e) => {
         }
     });
 
-    parentElement.querySelector(".animate__animated-deleteItem").addEventListener("click", (e) => {
+    parentElement.querySelector(".animate__animated-recycledItem").addEventListener("click", (e) => {
         let deletedItemID = e.target.parentElement.id;
         let userObject = {
             id: parentElement.id,
             name: parentElement.querySelector(".animate__animated-jokeItem").textContent,
         };
-        if (!trash.includes(JSON.stringify(userObject))) {
-            trash.splice(JSON.stringify(userObject));
-        };
 
-        localStorage.setItem("animate__animated-deleteItem", JSON.stringify(trash));
+
+        /* trash = trash.filter((item) => userObject.id != JSON.parse(item).id); */
+        //skaber et nyt array, det filtrer det klikkede objekt væk og laver en ny array uden det klikkede objekt. 
+        /* if (!trash.includes(JSON.stringify(userObject))) {
+            trash.splice(JSON.stringify(deletedItemID)); 
+    }; */
+        localStorage.setItem("animate__animated-recycledItem", JSON.stringify(trash));
         parentElement.classList.add("animate__fadeOutLeft")
-        /*         console.log(localStorage); */
         setTimeout(() => {
             parentElement.classList.add("collapsed");
         }, 800);

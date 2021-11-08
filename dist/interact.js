@@ -27,22 +27,21 @@ document.querySelector("main").addEventListener("touchstart", function (e) {
       touchElement.style.transform = "translateX(0)";
     }
   });
-  parentElement.querySelector(".animate__animated-deleteItem").addEventListener("click", function (e) {
+  parentElement.querySelector(".animate__animated-recycledItem").addEventListener("click", function (e) {
     var deletedItemID = e.target.parentElement.id;
     var userObject = {
       id: parentElement.id,
       name: parentElement.querySelector(".animate__animated-jokeItem").textContent
     };
+    /* trash = trash.filter((item) => userObject.id != JSON.parse(item).id); */
+    //skaber et nyt array, det filtrer det klikkede objekt væk og laver en ny array uden det klikkede objekt. 
 
-    if (!trash.includes(JSON.stringify(userObject))) {
-      trash.splice(JSON.stringify(userObject));
-    }
+    /* if (!trash.includes(JSON.stringify(userObject))) {
+        trash.splice(JSON.stringify(deletedItemID)); 
+    }; */
 
-    ;
-    localStorage.setItem("animate__animated-deleteItem", JSON.stringify(trash));
+    localStorage.setItem("animate__animated-recycledItem", JSON.stringify(trash));
     parentElement.classList.add("animate__fadeOutLeft");
-    /*         console.log(localStorage); */
-
     setTimeout(function () {
       parentElement.classList.add("collapsed");
     }, 800);

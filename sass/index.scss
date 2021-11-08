@@ -4,6 +4,9 @@ body {
 	h1 {
 		padding: 0.5em;
 	}
+	.fas {
+		color: black;
+	}
 }
 
 section {
@@ -31,7 +34,7 @@ section > * {
 	margin: 1px;
 }
 
-.animate__animated-deleteItem {
+.animate__animated-recycledItem {
 	background-color: rgb(188, 143, 143);
 	grid-area: 1/2/2/3;
 	justify-content: center;
@@ -39,7 +42,7 @@ section > * {
 	margin: 1px;
 }
 
-.animate__animated-deleteItem::before {
+.animate__animated-recycledItem::before {
 	font-family: "Font Awesome 5 Free";
 	content: "\f2ed";
 }

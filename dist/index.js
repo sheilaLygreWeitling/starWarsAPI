@@ -27,7 +27,7 @@ document.querySelector("main").addEventListener("touchstart", function (e) {
       touchElement.style.transform = "translateX(0)";
     }
   });
-  parentElement.querySelector(".animate__animated-deleteItem").addEventListener("click", function (e) {
+  parentElement.querySelector(".animate__animated-recycledItem").addEventListener("click", function (e) {
     var userObject = {
       id: parentElement.id,
       name: parentElement.querySelector(".animate__animated-jokeItem").textContent
@@ -38,7 +38,7 @@ document.querySelector("main").addEventListener("touchstart", function (e) {
     }
 
     ;
-    localStorage.setItem("animate__animated-deleteItem", JSON.stringify(trash));
+    localStorage.setItem(".animate__animated-recycledItem", JSON.stringify(trash));
     parentElement.classList.add("animate__fadeOutLeft");
     /*         console.log(localStorage); */
 
