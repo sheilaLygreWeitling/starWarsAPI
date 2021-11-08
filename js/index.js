@@ -1,12 +1,14 @@
 let touchCoordinateStart;
 let touchCoordinateMove;
 let touchCoordinateEnd;
-
+let touchElement;
+let parentElement;
 let deleteButtonWidth = (window.screen.width * 40) / 100;
 
+let deletedItems = window.localStorage;
+let trash = [];
+
 document.querySelector("main").addEventListener("touchstart", (e) => {
-    /* let section = document.querySelector(".animate__animated") */
-    /* let jokeItem = document.querySelector(".animate__animated-jokeItem") */
     touchElement = e.target;
     parentElement = e.target.parentElement;
     touchCoordinateStart = e.touches[0].clientX;
@@ -28,30 +30,16 @@ document.querySelector("main").addEventListener("touchstart", (e) => {
     });
 
     parentElement.querySelector(".animate__animated-deleteItem").addEventListener("click", (e) => {
-        const userid = parentElement.id
-        const animate__animatedDeleteItemButton = document.querySelector(".animate__animated-deleteItem");
-        const lsOutput = document.querySelector(".localStorageOutput")
-
-        function deleteJokeButton() {
-            const deleteButton = animate__animatedDeleteItemButton.value;
-            const userID = userid.value;
-
-            if (deleteButton && userID) {
-                localStorage.setItem(userID, deleteButton);
-                location.reload();
-            }
-        } deleteJokeButton();
-
-        for (let index = 0; index < localStorage.length; index++) {
-            const userID = localStorage.key(index);
-            const deleteButton = localStorage.getItem(userID);
-
-            lsOutput.innerHTML += `${deleteButton}`
-
-        }
-
-
-        parentElement.classList.add("animate__fadeOutLeft");
+        let userObject = {
+            id: parentElement.id,
+            name: parentElement.querySelector(".animate__animated-jokeItem").textContent,
+        };
+        if (!trash.includes(JSON.stringify(userObject))) {
+            trash.push(JSON.stringify(userObject));
+        };
+        localStorage.setItem("animate__animated-deleteItem", JSON.stringify(trash));
+        parentElement.classList.add("animate__fadeOutLeft")
+        /*         console.log(localStorage); */
         setTimeout(() => {
             parentElement.classList.add("collapsed");
         }, 800);

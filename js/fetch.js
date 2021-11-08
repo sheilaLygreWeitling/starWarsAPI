@@ -6,8 +6,6 @@ axios.get("https://jsonplaceholder.typicode.com/users/").then((response) => {
 
         let joke = document.createTextNode(user.name);
 
-
-
         let jokeSectionAnimate__animated = document.createElement("section");
         jokeSectionAnimate__animated.classList.add("animate__animated");//class på "jokeSectionAnimate__animated", som er "section"
         jokeSectionAnimate__animated.setAttribute("id", user.id);//Her sætter vi en identifier(id), på "section"
