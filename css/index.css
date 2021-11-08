@@ -15,9 +15,6 @@ section {
   transition: height 0.45s ease;
   /*Height manipulerer med alt der har med height at gøre. Det er en dårlig ide at lave transition på "height", men kan bruge scaleY, men det er besværligt i et grid*/
 }
-section .fieldset {
-  display: flex;
-}
 
 .collapsed {
   height: 0;
@@ -38,10 +35,6 @@ section > * {
   margin: 1px;
 }
 
-/* 
-section:nth-child(even) .animate__animated-jokeItem {
-	background-color: rgb(92, 125, 92);
-} */
 .animate__animated-deleteItem {
   background-color: rosybrown;
   grid-area: 1/2/2/3;

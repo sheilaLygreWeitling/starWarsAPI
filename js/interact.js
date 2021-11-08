@@ -6,7 +6,6 @@ let parentElement;
 let deleteButtonWidth = (window.screen.width * 40) / 100;
 let trash = [];
 
-
 document.querySelector("main").addEventListener("touchstart", (e) => {
     touchElement = e.target;
     parentElement = e.target.parentElement;
@@ -29,13 +28,15 @@ document.querySelector("main").addEventListener("touchstart", (e) => {
     });
 
     parentElement.querySelector(".animate__animated-deleteItem").addEventListener("click", (e) => {
+        let deletedItemID = e.target.parentElement.id;
         let userObject = {
             id: parentElement.id,
             name: parentElement.querySelector(".animate__animated-jokeItem").textContent,
         };
         if (!trash.includes(JSON.stringify(userObject))) {
-            trash.push(JSON.stringify(userObject));
+            trash.splice(JSON.stringify(userObject));
         };
+
         localStorage.setItem("animate__animated-deleteItem", JSON.stringify(trash));
         parentElement.classList.add("animate__fadeOutLeft")
         /*         console.log(localStorage); */

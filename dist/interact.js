@@ -28,13 +28,14 @@ document.querySelector("main").addEventListener("touchstart", function (e) {
     }
   });
   parentElement.querySelector(".animate__animated-deleteItem").addEventListener("click", function (e) {
+    var deletedItemID = e.target.parentElement.id;
     var userObject = {
       id: parentElement.id,
       name: parentElement.querySelector(".animate__animated-jokeItem").textContent
     };
 
     if (!trash.includes(JSON.stringify(userObject))) {
-      trash.push(JSON.stringify(userObject));
+      trash.splice(JSON.stringify(userObject));
     }
 
     ;

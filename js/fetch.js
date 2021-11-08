@@ -16,10 +16,17 @@ axios.get("https://jsonplaceholder.typicode.com/users/").then((response) => {
         let jokeAnimate__animatedJokeItem = document.createElement("article");
         jokeAnimate__animatedJokeItem.classList.add("animate__animated-jokeItem");
 
+        let trashIconDiv = document.createElement("div");
+        trashIconDiv.classList.add("trashIconDiv");
+
+        let trashIcon = document.createElement("a");
+        trashIcon.classList.add("fas", "fa-trash-alt")
+
         jokeSectionAnimate__animated.appendChild(jokeAnimate__animatedDeleteItem);
         jokeSectionAnimate__animated.appendChild(jokeAnimate__animatedJokeItem)
         mainJoke.appendChild(jokeSectionAnimate__animated)
         jokeAnimate__animatedJokeItem.appendChild(joke)
+        trashIconDiv.appendChild(trashIcon)
     });
 });
 
