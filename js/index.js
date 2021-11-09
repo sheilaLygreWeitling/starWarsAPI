@@ -5,6 +5,10 @@ let touchElement;
 let parentElement;
 let deleteButtonWidth = (window.screen.width * 40) / 100;
 let recycle = JSON.parse(localStorage.getItem('deletedItems'));
+let trash = []
+if (recycle) {
+    trash = recycle
+}
 
 document.querySelector("main").addEventListener("touchstart", (e) => {
     if (e.target.tagName === "ARTICLE") {
@@ -38,8 +42,8 @@ document.querySelector("main").addEventListener("touchstart", (e) => {
                 name: parentElement.querySelector(".animate__animated-jokeItem").textContent,
             };
 
-            /*             recycle.push(userObject); */
-            localStorage.setItem("deletedItems", JSON.stringify(recycle));
+            trash.push(userObject)
+            localStorage.setItem("deletedItems", JSON.stringify(trash));
             parentElement.querySelector(".animate__animated-recycledItem").onclick = null;
 
             parentElement.classList.add("animate__fadeOutLeft")

@@ -7,6 +7,12 @@ var touchElement;
 var parentElement;
 var deleteButtonWidth = window.screen.width * 40 / 100;
 var recycle = JSON.parse(localStorage.getItem('deletedItems'));
+var trash = [];
+
+if (recycle) {
+  trash = recycle;
+}
+
 document.querySelector("main").addEventListener("touchstart", function (e) {
   if (e.target.tagName === "ARTICLE") {
     touchElement = e.target;
@@ -38,9 +44,8 @@ document.querySelector("main").addEventListener("touchstart", function (e) {
         id: parentElement.id,
         name: parentElement.querySelector(".animate__animated-jokeItem").textContent
       };
-      /*             recycle.push(userObject); */
-
-      localStorage.setItem("deletedItems", JSON.stringify(recycle));
+      trash.push(userObject);
+      localStorage.setItem("deletedItems", JSON.stringify(trash));
       parentElement.querySelector(".animate__animated-recycledItem").onclick = null;
       parentElement.classList.add("animate__fadeOutLeft");
       setTimeout(function () {
