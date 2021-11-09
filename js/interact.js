@@ -4,7 +4,7 @@ let touchCoordinateEnd;
 let touchElement;
 let parentElement;
 let deleteButtonWidth = (window.screen.width * 40) / 100;
-let trash = [];
+let recycle = JSON.parse(localStorage.getItem('deletedItems'));
 
 document.querySelector("main").addEventListener("touchstart", (e) => {
     touchElement = e.target;
@@ -27,20 +27,19 @@ document.querySelector("main").addEventListener("touchstart", (e) => {
         }
     });
 
-    parentElement.querySelector(".animate__animated-recycledItem").addEventListener("click", (e) => {
-        let deletedItemID = e.target.parentElement.id;
+    parentElement.querySelector(".animate__animated-recycledItem").onclick = (e) => {
         let userObject = {
             id: parentElement.id,
             name: parentElement.querySelector(".animate__animated-jokeItem").textContent,
         };
+        recycle = recycle.filter((item) => userObject.id != item.id);
 
+        if (recycle.length > 0) {
+            localStorage.setItem("deletedItems", JSON.stringify(recycle));
+        } else {
+            localStorage.clear()
+        }
 
-        /* trash = trash.filter((item) => userObject.id != JSON.parse(item).id); */
-        //skaber et nyt array, det filtrer det klikkede objekt væk og laver en ny array uden det klikkede objekt. 
-        /* if (!trash.includes(JSON.stringify(userObject))) {
-            trash.splice(JSON.stringify(deletedItemID)); 
-    }; */
-        localStorage.setItem("animate__animated-recycledItem", JSON.stringify(trash));
         parentElement.classList.add("animate__fadeOutLeft")
         setTimeout(() => {
             parentElement.classList.add("collapsed");
@@ -48,5 +47,11 @@ document.querySelector("main").addEventListener("touchstart", (e) => {
         setTimeout(() => {
             parentElement.remove();
         }, 900);
-    });
+    };
 });
+
+/* trash = trash.filter((item) => userObject.id != JSON.parse(item).id); */
+        //skaber et nyt array, det filtrer det klikkede objekt væk og laver en ny array uden det klikkede objekt. 
+/* if (!trash.includes(JSON.stringify(userObject))) {
+    trash.splice(JSON.stringify(deletedItemID));
+}; */

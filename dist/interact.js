@@ -6,7 +6,7 @@ var touchCoordinateEnd;
 var touchElement;
 var parentElement;
 var deleteButtonWidth = window.screen.width * 40 / 100;
-var trash = [];
+var recycle = JSON.parse(localStorage.getItem('deletedItems'));
 document.querySelector("main").addEventListener("touchstart", function (e) {
   touchElement = e.target;
   parentElement = e.target.parentElement;
@@ -27,20 +27,16 @@ document.querySelector("main").addEventListener("touchstart", function (e) {
       touchElement.style.transform = "translateX(0)";
     }
   });
-  parentElement.querySelector(".animate__animated-recycledItem").addEventListener("click", function (e) {
-    var deletedItemID = e.target.parentElement.id;
+
+  parentElement.querySelector(".animate__animated-recycledItem").onclick = function (e) {
     var userObject = {
       id: parentElement.id,
       name: parentElement.querySelector(".animate__animated-jokeItem").textContent
     };
-    /* trash = trash.filter((item) => userObject.id != JSON.parse(item).id); */
-    //skaber et nyt array, det filtrer det klikkede objekt væk og laver en ny array uden det klikkede objekt. 
-
-    /* if (!trash.includes(JSON.stringify(userObject))) {
-        trash.splice(JSON.stringify(deletedItemID)); 
-    }; */
-
-    localStorage.setItem("animate__animated-recycledItem", JSON.stringify(trash));
+    recycle = recycle.filter(function (item) {
+      return userObject.id != item.id;
+    });
+    localStorage.setItem("deletedItems", JSON.stringify(recycle));
     parentElement.classList.add("animate__fadeOutLeft");
     setTimeout(function () {
       parentElement.classList.add("collapsed");
@@ -48,5 +44,11 @@ document.querySelector("main").addEventListener("touchstart", function (e) {
     setTimeout(function () {
       parentElement.remove();
     }, 900);
-  });
+  };
 });
+/* trash = trash.filter((item) => userObject.id != JSON.parse(item).id); */
+//skaber et nyt array, det filtrer det klikkede objekt væk og laver en ny array uden det klikkede objekt. 
+
+/* if (!trash.includes(JSON.stringify(userObject))) {
+    trash.splice(JSON.stringify(deletedItemID));
+}; */

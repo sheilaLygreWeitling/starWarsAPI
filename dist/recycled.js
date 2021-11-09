@@ -1,14 +1,13 @@
 "use strict";
 
-var recycle = JSON.parse(localStorage.getItem("animate__animated-deleteItem"));
-recycle.forEach(function (recycledItem) {
-  var parseRecycledItemJoke = JSON.parse(recycledItem);
+var deletedItems = JSON.parse(localStorage.getItem("deletedItems"));
+deletedItems.forEach(function (deletedItem) {
   var mainJoke = document.querySelector(".Main");
-  var joke = document.createTextNode(user.name);
+  var joke = document.createTextNode(deletedItem.name);
   var jokeSectionAnimate__animated = document.createElement("section");
   jokeSectionAnimate__animated.classList.add("animate__animated"); //class på "jokeSectionAnimate__animated", som er "section"
 
-  jokeSectionAnimate__animated.setAttribute("id", key); //Her sætter vi en identifier(id), på "section"
+  jokeSectionAnimate__animated.setAttribute("id", deletedItem.id); //Her sætter vi en identifier(id), på "section"
 
   var jokeAnimate__animatedRecycledItem = document.createElement("div");
   jokeAnimate__animatedRecycledItem.classList.add("animate__animated-recycledItem");

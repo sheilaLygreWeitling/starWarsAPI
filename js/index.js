@@ -5,6 +5,9 @@ let touchElement;
 let parentElement;
 let deleteButtonWidth = (window.screen.width * 40) / 100;
 let trash = [];
+if (localStorage.getItem('deletedItems')) {
+    trash = JSON.parse(localStorage.getItem('deletedItems'))
+}
 
 
 document.querySelector("main").addEventListener("touchstart", (e) => {
@@ -28,15 +31,15 @@ document.querySelector("main").addEventListener("touchstart", (e) => {
         }
     });
 
-    parentElement.querySelector(".animate__animated-recycledItem").addEventListener("click", (e) => {
+    parentElement.querySelector(".animate__animated-recycledItem").onclick = () => {
         let userObject = {
             id: parentElement.id,
             name: parentElement.querySelector(".animate__animated-jokeItem").textContent,
         };
-        if (!trash.includes(JSON.stringify(userObject))) {
-            trash.push(JSON.stringify(userObject));
-        };
-        localStorage.setItem(".animate__animated-recycledItem", JSON.stringify(trash));
+        // if (!trash.includes(JSON.stringify(userObject))) {
+        trash.push(userObject);
+        // };
+        localStorage.setItem("deletedItems", JSON.stringify(trash));
         parentElement.classList.add("animate__fadeOutLeft")
         /*         console.log(localStorage); */
         setTimeout(() => {
@@ -45,5 +48,5 @@ document.querySelector("main").addEventListener("touchstart", (e) => {
         setTimeout(() => {
             parentElement.remove();
         }, 900);
-    });
+    };
 });

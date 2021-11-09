@@ -7,6 +7,11 @@ var touchElement;
 var parentElement;
 var deleteButtonWidth = window.screen.width * 40 / 100;
 var trash = [];
+
+if (localStorage.getItem('deletedItems')) {
+  trash = JSON.parse(localStorage.getItem('deletedItems'));
+}
+
 document.querySelector("main").addEventListener("touchstart", function (e) {
   touchElement = e.target;
   parentElement = e.target.parentElement;
@@ -27,18 +32,16 @@ document.querySelector("main").addEventListener("touchstart", function (e) {
       touchElement.style.transform = "translateX(0)";
     }
   });
-  parentElement.querySelector(".animate__animated-recycledItem").addEventListener("click", function (e) {
+
+  parentElement.querySelector(".animate__animated-recycledItem").onclick = function () {
     var userObject = {
       id: parentElement.id,
       name: parentElement.querySelector(".animate__animated-jokeItem").textContent
-    };
+    }; // if (!trash.includes(JSON.stringify(userObject))) {
 
-    if (!trash.includes(JSON.stringify(userObject))) {
-      trash.push(JSON.stringify(userObject));
-    }
+    trash.push(userObject); // };
 
-    ;
-    localStorage.setItem(".animate__animated-recycledItem", JSON.stringify(trash));
+    localStorage.setItem("deletedItems", JSON.stringify(trash));
     parentElement.classList.add("animate__fadeOutLeft");
     /*         console.log(localStorage); */
 
@@ -48,5 +51,5 @@ document.querySelector("main").addEventListener("touchstart", function (e) {
     setTimeout(function () {
       parentElement.remove();
     }, 900);
-  });
+  };
 });
